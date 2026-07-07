@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <title>sign In</title>
+</head>
+
+<body>
+    <input type="email" placeholder="Email" id="mail">
+    <input type="password" placeholder="*********" id="pass">
+
+    <button id="btn" onclick="signInfo()">Sign In</button>
+    <button onclick="signG()">Sign in with google</button>
+    <div>To become a member sign up <a href="signup.html">here</a></div>
+</body>
+<!-- <script>
+    const allUsers = JSON.parse(localStorage.getItem('newUsers'))
+
+    const signInfo = () => {
+        const Email = document.getElementById('mail').value
+        const password = document.getElementById('pass').value
+
+        // alert('working')
+
+        if (Email.trim() === '' || password.trim() === '') {
+            alert('Fill all Inputs')
+        } else {
+            const found = allUsers.find(user => user.Email === Email && user.password)
+            console.log(found);
+            if (found) {
+                btn.innerHTML = `
+                    <div class="spinner-grow text-dark" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                `
+                setTimeout(() => {
+                    localStorage.setItem('newSignedInUser', JSON.stringify(found))
+                    window.location.href = `index.html`
+                }, 3000);
+            } else {
+                alert('user not found')
+            }
+        }
+    }
+
+</script> -->
+
+
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAhK6rixBFGnZynL5XNzj0IqvVAzQ2mt5E",
+    authDomain: "tourism-4abf2.firebaseapp.com",
+    projectId: "tourism-4abf2",
+    storageBucket: "tourism-4abf2.firebasestorage.app",
+    messagingSenderId: "973256324109",
+    appId: "1:973256324109:web:472f8056a8430f22259144"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+
+
+
+   const allUsers = JSON.parse(localStorage.getItem('newUsers'))
+
+    const signInfo = () => {
+        const Email = document.getElementById('mail').value
+        const password = document.getElementById('pass').value
+
+        // alert('working')
+
+        if (Email.trim() === '' || password.trim() === '') {
+            alert('Fill all Inputs')
+        } else {
+            const found = allUsers.find(user => user.Email === Email && user.password)
+            console.log(found);
+            if (found) {
+                btn.innerHTML = `
+                    <div class="spinner-grow text-dark" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                `
+                setTimeout(() => {
+                    localStorage.setItem('newSignedInUser', JSON.stringify(found))
+                    window.location.href = `index.html`
+                }, 3000);
+            } else {
+                alert('user not found')
+            }
+        }
+    }
+
+    const signG = () => {
+        // alert('helll')
+        signInWithPopup(auth, provider)
+        .then((result)=> {
+            const user = result.user;
+            console.log(result)
+
+            setTimeout(() => {
+                window.location.href = `index.html`
+            }, 1500);
+        }).catch ((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
+            
+            
+        })
+    }
+
+    window.signG = signG
+
+</script>
+</html>
