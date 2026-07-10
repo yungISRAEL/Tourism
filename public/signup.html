@@ -87,31 +87,40 @@
 
 
 
-   const allUsers = JSON.parse(localStorage.getItem('newUsers'))
+   const allUsers = JSON.parse(localStorage.getItem('newUsers')) || []
 
-    const signInfo = () => {
+    const submitInfo = () => {
+        const first_Name = document.getElementById('firstName').value;
+        const last_Name = document.getElementById('lastName').value;
         const Email = document.getElementById('mail').value
         const password = document.getElementById('pass').value
 
-        // alert('working')
 
-        if (Email.trim() === '' || password.trim() === '') {
-            alert('Fill all Inputs')
+        // alert('hellloooo')
+        if (first_Name.trim() === '' || last_Name.trim() === '' || Email.trim() === '' || password.trim() === '') {
+            alert('Empty Inputs, plaese fill up!')
         } else {
-            const found = allUsers.find(user => user.Email === Email && user.password)
+            const userObj = { first_Name, last_Name, Email, password }
+            console.log(userObj);
+            const found = allUsers.find(user => user.Email === Email)
             console.log(found);
             if (found) {
+                alert('User already Exist')
+            } else {
+                allUsers.push(userObj)
+                localStorage.setItem('newUsers', JSON.stringify(allUsers))
+                // console.log(window.location.href);
+
                 btn.innerHTML = `
-                    <div class="spinner-grow text-dark" role="status">
+                    <div class="spinner-grow text-warning" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
+                
                 `
+
                 setTimeout(() => {
-                    localStorage.setItem('newSignedInUser', JSON.stringify(found))
-                    window.location.href = `index.html`
-                }, 3000);
-            } else {
-                alert('user not found')
+                    window.location.href = `signin.html`
+                }, 3000)
             }
         }
     }
@@ -137,6 +146,7 @@
     }
 
     window.signG = signG
+    window.submitInfo = submitInfo
 
 </script>
 
