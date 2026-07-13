@@ -6,148 +6,318 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Create Account | AfriVista</title>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(120deg, rgba(10, 15, 21, 0.78), rgba(126, 87, 41, 0.63)), url('image/Rectangle 4.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            color: #fdf7f0;
+        }
+
+        .auth-shell {
+            width: min(1100px, 100%);
+            min-height: 660px;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(18px);
+            background: rgba(9, 14, 20, 0.42);
+        }
+
+        .auth-visual {
+            padding: 54px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            background: linear-gradient(135deg, rgba(8, 11, 17, 0.78), rgba(116, 74, 38, 0.42));
+        }
+
+        .auth-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.2), transparent 40%);
+            pointer-events: none;
+        }
+
+        .brand-pill {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .auth-visual h1 {
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            font-weight: 700;
+            margin: 18px 0 12px;
+            line-height: 1.15;
+        }
+
+        .auth-visual p {
+            max-width: 480px;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.84);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .tag-row span {
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            font-size: 0.82rem;
+        }
+
+        .auth-form {
+            padding: 42px 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 390px;
+        }
+
+        .auth-card h2 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .auth-card .text-muted {
+            color: rgba(255, 255, 255, 0.74) !important;
+        }
+
+        .form-label {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 7px;
+        }
+
+        .form-control {
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.95);
+            min-height: 48px;
+            padding: 0 14px;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(167, 108, 52, 0.25);
+            border-color: #a76c34;
+        }
+
+        .btn-primary {
+            border: none;
+            border-radius: 14px;
+            min-height: 48px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #a76c34, #d28e44);
+            box-shadow: 0 10px 24px rgba(167, 108, 52, 0.25);
+        }
+
+        .btn-outline-light {
+            border-radius: 14px;
+            min-height: 48px;
+            border-color: rgba(255, 255, 255, 0.26);
+            color: #fff;
+        }
+
+        .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.14);
+            color: #fff;
+        }
+
+        .auth-link {
+            color: #ffd7a8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-link:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 850px) {
+            .auth-shell {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-visual {
+                padding: 32px 28px 24px;
+            }
+
+            .auth-form {
+                padding: 28px 22px 32px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <input type="text" placeholder="First Name" id="firstName">
-    <input type="text" placeholder="Last Name" id="lastName">
-    <input type="email" placeholder="Email" id="mail">
-    <input type="password" placeholder="********" id="pass">
+    <div class="auth-shell">
+        <div class="auth-visual">
+            <div>
+                <div class="brand-pill">AfriVista</div>
+                <h1>Create your account and start exploring Africa in style.</h1>
+                <p>Join thousands of travelers planning premium stays, curated safaris, and unforgettable cultural experiences.</p>
+                <div class="tag-row">
+                    <span>Luxury Stays</span>
+                    <span>Local Adventures</span>
+                    <span>Easy Booking</span>
+                </div>
+            </div>
+        </div>
 
-    <button id="btn" onclick="submitInfo()">submit</button>
-    <button onclick="signG()">Sign in with google</button>
-    <div>Already an AfriVista Member? sign in<a href="signin.html">here</a></div>
+        <div class="auth-form">
+            <div class="auth-card">
+                <div class="text-center mb-4">
+                    <h2>Create Account</h2>
+                    <p class="text-muted mb-0">Begin your journey with us today.</p>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="firstName" class="form-label">First name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="First name">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lastName" class="form-label">Last name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="Last name">
+                    </div>
+                </div>
+
+                <div class="mb-3 mt-3">
+                    <label for="mail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="mail" placeholder="you@example.com">
+                </div>
+
+                <div class="mb-3">
+                    <label for="pass" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="pass" placeholder="********">
+                </div>
+
+                <button class="btn btn-primary w-100 mb-3" id="btn" onclick="submitInfo()">Create Account</button>
+                <button class="btn btn-outline-light w-100" onclick="signG()"><i class="bi bi-google me-2"></i>Sign up with Google</button>
+
+                <p class="text-center mt-4 mb-0 text-muted">
+                    Already a member? <a class="auth-link" href="signin.html">Sign in</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAhK6rixBFGnZynL5XNzj0IqvVAzQ2mt5E",
+            authDomain: "tourism-4abf2.firebaseapp.com",
+            projectId: "tourism-4abf2",
+            storageBucket: "tourism-4abf2.firebasestorage.app",
+            messagingSenderId: "973256324109",
+            appId: "1:973256324109:web:472f8056a8430f22259144"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+        const btn = document.getElementById('btn');
+        const allUsers = JSON.parse(localStorage.getItem('newUsers')) || [];
+
+        const submitInfo = () => {
+            const first_Name = document.getElementById('firstName').value;
+            const last_Name = document.getElementById('lastName').value;
+            const Email = document.getElementById('mail').value;
+            const password = document.getElementById('pass').value;
+
+            if (first_Name.trim() === '' || last_Name.trim() === '' || Email.trim() === '' || password.trim() === '') {
+                alert('Empty Inputs, please fill up!');
+            } else {
+                const userObj = { first_Name, last_Name, Email, password };
+                const found = allUsers.find(user => user.Email === Email);
+                if (found) {
+                    alert('User already Exist');
+                } else {
+                    allUsers.push(userObj);
+                    localStorage.setItem('newUsers', JSON.stringify(allUsers));
+
+                    btn.innerHTML = `
+                        <div class="spinner-grow text-light" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    `;
+
+                    setTimeout(() => {
+                        window.location.href = 'signin.html';
+                    }, 1200);
+                }
+            }
+        };
+
+        const signG = () => {
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    console.log(result);
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1200);
+                })
+                .catch((error) => {
+                    console.log(error.code);
+                    console.log(error.message);
+                });
+        };
+
+        window.signG = signG;
+        window.submitInfo = submitInfo;
+    </script>
 </body>
-<!-- <script>
-    const allUsers = JSON.parse(localStorage.getItem('newUsers')) || []
-
-    const submitInfo = () => {
-        const first_Name = document.getElementById('firstName').value;
-        const last_Name = document.getElementById('lastName').value;
-        const Email = document.getElementById('mail').value
-        const password = document.getElementById('pass').value
-
-
-        // alert('hellloooo')
-        if (first_Name.trim() === '' || last_Name.trim() === '' || Email.trim() === '' || password.trim() === '') {
-            alert('Empty Inputs, plaese fill up!')
-        } else {
-            const userObj = { first_Name, last_Name, Email, password }
-            console.log(userObj);
-            const found = allUsers.find(user => user.Email === Email)
-            console.log(found);
-            if (found) {
-                alert('User already Exist')
-            } else {
-                allUsers.push(userObj)
-                localStorage.setItem('newUsers', JSON.stringify(allUsers))
-                // console.log(window.location.href);
-
-                btn.innerHTML = `
-                    <div class="spinner-grow text-warning" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                
-                `
-
-                setTimeout(() => {
-                    window.location.href = `signin.html`
-                }, 3000)
-            }
-        }
-    }
-</script> -->
-
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-  import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyAhK6rixBFGnZynL5XNzj0IqvVAzQ2mt5E",
-    authDomain: "tourism-4abf2.firebaseapp.com",
-    projectId: "tourism-4abf2",
-    storageBucket: "tourism-4abf2.firebasestorage.app",
-    messagingSenderId: "973256324109",
-    appId: "1:973256324109:web:472f8056a8430f22259144"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
-
-
-
-
-   const allUsers = JSON.parse(localStorage.getItem('newUsers')) || []
-
-    const submitInfo = () => {
-        const first_Name = document.getElementById('firstName').value;
-        const last_Name = document.getElementById('lastName').value;
-        const Email = document.getElementById('mail').value
-        const password = document.getElementById('pass').value
-
-
-        // alert('hellloooo')
-        if (first_Name.trim() === '' || last_Name.trim() === '' || Email.trim() === '' || password.trim() === '') {
-            alert('Empty Inputs, plaese fill up!')
-        } else {
-            const userObj = { first_Name, last_Name, Email, password }
-            console.log(userObj);
-            const found = allUsers.find(user => user.Email === Email)
-            console.log(found);
-            if (found) {
-                alert('User already Exist')
-            } else {
-                allUsers.push(userObj)
-                localStorage.setItem('newUsers', JSON.stringify(allUsers))
-                // console.log(window.location.href);
-
-                btn.innerHTML = `
-                    <div class="spinner-grow text-warning" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                
-                `
-
-                setTimeout(() => {
-                    window.location.href = `signin.html`
-                }, 3000)
-            }
-        }
-    }
-
-    const signG = () => {
-        // alert('helll')
-        signInWithPopup(auth, provider)
-        .then((result)=> {
-            const user = result.user;
-            console.log(result)
-
-            setTimeout(() => {
-                window.location.href = `index.html`
-            }, 1500);
-        }).catch ((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode);
-            console.log(errorMessage);
-            
-            
-        })
-    }
-
-    window.signG = signG
-    window.submitInfo = submitInfo
-
-</script>
 
 </html>
