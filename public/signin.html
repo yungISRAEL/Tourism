@@ -258,6 +258,8 @@
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
         const btn = document.getElementById('btn');
+
+
         const allUsers = JSON.parse(localStorage.getItem('newUsers')) || [];
 
         const signInfo = () => {
@@ -269,7 +271,7 @@
             } else {
                 const found = allUsers.find(user => user.Email === Email && user.password);
                 if (found) {
-                    btn.innerHTML = `
+btn.innerHTML = `
                         <div class="spinner-grow text-light" role="status">
                             <span class="visually-hidden">Loading...</span>
                         </div>
@@ -277,7 +279,7 @@
                     setTimeout(() => {
                         localStorage.setItem('newSignedInUser', JSON.stringify(found));
                         window.location.href = 'dashboard.html';
-                    }, 1200);
+                    }, 1200);                    
                 } else {
                     alert('user not found');
                 }
