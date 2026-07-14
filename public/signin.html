@@ -279,7 +279,7 @@ btn.innerHTML = `
                     setTimeout(() => {
                         localStorage.setItem('newSignedInUser', JSON.stringify(found));
                         window.location.href = 'dashboard.html';
-                    }, 1200);                    
+                    }, 1500);                    
                 } else {
                     alert('user not found');
                 }
@@ -292,7 +292,7 @@ btn.innerHTML = `
                     console.log(result);
                     setTimeout(() => {
                         window.location.href = 'dashboard.html';
-                    }, 1200);
+                    }, 1500);
                 })
                 .catch((error) => {
                     console.log(error.code);
